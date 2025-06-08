@@ -13,7 +13,7 @@ struct ContentView: View {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-            Text("Hello, To Do List with Firebase")
+            Text("Hello, To do List with Firebase")
         }
         .padding()
     }
