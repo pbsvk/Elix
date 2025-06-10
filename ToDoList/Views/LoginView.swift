@@ -8,16 +8,57 @@
 import SwiftUI
 
 struct LoginView: View {
+    @State private var email = ""
+    @State private var password = ""
+
     var body: some View {
-        //Header
-        HeaderView()
-        Spacer()
-        // Login form
-        
-        
-        // Create account
+        ZStack {
+            VStack(spacing: 0) {
+                HeaderView()
+                
+                Spacer(minLength: 32)
+                
+                VStack(spacing: 18) {
+                    TextField("Email", text: $email)
+                        .padding()
+                        .background(Color(UIColor.systemGray6))
+                        .cornerRadius(12)
+                        .autocapitalization(.none)
+                    
+                    SecureField("Password", text: $password)
+                        .padding()
+                        .background(Color(UIColor.systemGray6))
+                        .cornerRadius(12)
+                    
+                    Button(action: {
+                        // Login action
+                    }) {
+                        Text("Login")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(Color.blue)
+                            .cornerRadius(12)
+                    }
+                }
+                .padding(.horizontal, 28)
+                
+                Spacer()
+                
+                VStack(spacing: 4) {
+                    Text("Don't have an account?")
+                    Button("Register") {
+                        // Register action
+                    }
+                    .foregroundColor(.blue)
+                }
+                .padding(.bottom, 40)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
     }
 }
+
 
 #Preview {
     LoginView()
