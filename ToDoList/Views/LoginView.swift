@@ -12,49 +12,51 @@ struct LoginView: View {
     @State private var password = ""
 
     var body: some View {
-        ZStack {
-            VStack(spacing: 0) {
-                HeaderView()
-                
-                Spacer(minLength: 32)
-                
-                VStack(spacing: 18) {
-                    TextField("Email", text: $email)
-                        .padding()
-                        .background(Color(UIColor.systemGray6))
-                        .cornerRadius(12)
-                        .autocapitalization(.none)
+        NavigationView
+        {
+            ZStack {
+                VStack(spacing: 0) {
+                    HeaderView(routename: "Login")
                     
-                    SecureField("Password", text: $password)
-                        .padding()
-                        .background(Color(UIColor.systemGray6))
-                        .cornerRadius(12)
+                    Spacer(minLength: 32)
                     
-                    Button(action: {
-                        // Login action
-                    }) {
-                        Text("Login")
-                            .frame(maxWidth: .infinity)
+                    VStack(spacing: 18) {
+                        TextField("Email", text: $email)
                             .padding()
-                            .foregroundColor(.white)
-                            .background(Color.blue)
+                            .background(Color(UIColor.systemGray6))
                             .cornerRadius(12)
+                            .autocapitalization(.none)
+                        
+                        SecureField("Password", text: $password)
+                            .padding()
+                            .background(Color(UIColor.systemGray6))
+                            .cornerRadius(12)
+                        
+                        Button(action: {
+                            // Login action
+                        }) {
+                            Text("Login")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color.blue)
+                                .cornerRadius(12)
+                        }
                     }
-                }
-                .padding(.horizontal, 28)
-                
-                Spacer()
-                
-                VStack(spacing: 4) {
-                    Text("Don't have an account?")
-                    Button("Register") {
-                        // Register action
+                    .padding(.horizontal, 28)
+                    
+                    Spacer()
+                    
+                    VStack(spacing: 4) {
+                        Text("Don't have an account?")
+                        NavigationLink("Sign Up", destination: RegisterView())
+                        .foregroundColor(.blue)
                     }
-                    .foregroundColor(.blue)
+                    .padding(.bottom, 40)
                 }
-                .padding(.bottom, 40)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
         }
     }
 }

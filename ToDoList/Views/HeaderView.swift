@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct HeaderView: View {
+    let title: String = "Elix"
+    let subtitle: String = "Be accountable"
+    let routename: String
     var body: some View {
             VStack( spacing: 4) {
-                Text("To Do List")
+                Text(title)
                     .font(.largeTitle).fontWeight(.bold)
-                Text("Be accountable")
+                Text(subtitle)
                     .font(.title3).fontWeight(.medium)
+                Text(routename)
+                    .foregroundColor(.gray)
             }
             .padding()
     }
@@ -21,5 +26,5 @@ struct HeaderView: View {
 
 
 #Preview {
-    HeaderView()
+    HeaderView(routename: "Routename")
 }
