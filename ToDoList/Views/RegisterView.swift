@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RegisterView: View {
+    @State private var fullname = ""
     @State private var email = ""
     @State private var password = ""
     var body: some View
@@ -21,27 +22,27 @@ struct RegisterView: View {
                         Spacer(minLength: 32)
                         
                         VStack(spacing: 18) {
+                            TextField("Full Name", text: $fullname)
+                                .padding()
+                                .background(Color(UIColor.systemGray6))
+                                .cornerRadius(12)
+                                .autocapitalization(.none)
+                                .autocorrectionDisabled(true)
+                            
                             TextField("Email", text: $email)
                                 .padding()
                                 .background(Color(UIColor.systemGray6))
                                 .cornerRadius(12)
                                 .autocapitalization(.none)
+                                .autocorrectionDisabled(true)
                             
                             SecureField("Password", text: $password)
                                 .padding()
                                 .background(Color(UIColor.systemGray6))
                                 .cornerRadius(12)
                             
-                            Button(action: {
-                                // Login action
-                            }) {
-                                Text("Sign Up")
-                                    .frame(maxWidth: .infinity)
-                                    .padding()
-                                    .foregroundColor(.white)
-                                    .background(Color.blue)
-                                    .cornerRadius(12)
-                            }
+                            TLButton(title: "Sign Up", action: {}, backgroundColor: .green)
+                                
                         }
                         .padding(.horizontal, 28)
                         

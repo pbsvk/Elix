@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var email = ""
-    @State private var password = ""
-
+    @StateObject var viewModel = LoginViewViewModel()
+    
     var body: some View {
         NavigationView
         {
@@ -21,27 +20,23 @@ struct LoginView: View {
                     Spacer(minLength: 32)
                     
                     VStack(spacing: 18) {
-                        TextField("Email", text: $email)
+                        TextField("Email", text: $viewModel.email)
                             .padding()
                             .background(Color(UIColor.systemGray6))
                             .cornerRadius(12)
                             .autocapitalization(.none)
+                            .autocorrectionDisabled(true)
                         
-                        SecureField("Password", text: $password)
+                        SecureField("Password", text: $viewModel.password)
                             .padding()
                             .background(Color(UIColor.systemGray6))
                             .cornerRadius(12)
-                        
-                        Button(action: {
-                            // Login action
-                        }) {
-                            Text("Login")
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .foregroundColor(.white)
-                                .background(Color.blue)
-                                .cornerRadius(12)
+                        if !viewModel.errorMessage.isEmpty {
+                            Text(viewModel.errorMessage)
+                                .foregroundStyle(.red)
                         }
+                        
+                        TLButton(title: "Log In", action: {viewModel.login()}, backgroundColor: .blue)
                     }
                     .padding(.horizontal, 28)
                     
