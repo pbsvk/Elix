@@ -17,6 +17,7 @@ class LoginViewViewModel: ObservableObject {
     func login(){
         guard validate() else {
             return
+            
         }
         // Try to login
         Auth.auth().signIn(withEmail: email, password: password)
