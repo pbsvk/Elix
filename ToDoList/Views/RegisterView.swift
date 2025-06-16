@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @State private var fullname = ""
-    @State private var email = ""
-    @State private var password = ""
+@StateObject var viewModel = RegisterViewViewModel()
     var body: some View
         {
             NavigationView
@@ -22,21 +20,21 @@ struct RegisterView: View {
                         Spacer(minLength: 32)
                         
                         VStack(spacing: 18) {
-                            TextField("Full Name", text: $fullname)
+                            TextField("Full Name", text: $viewModel.fullname)
                                 .padding()
                                 .background(Color(UIColor.systemGray6))
                                 .cornerRadius(12)
                                 .autocapitalization(.none)
                                 .autocorrectionDisabled(true)
                             
-                            TextField("Email", text: $email)
+                            TextField("Email", text: $viewModel.email)
                                 .padding()
                                 .background(Color(UIColor.systemGray6))
                                 .cornerRadius(12)
                                 .autocapitalization(.none)
                                 .autocorrectionDisabled(true)
                             
-                            SecureField("Password", text: $password)
+                            SecureField("Password", text: $viewModel.password)
                                 .padding()
                                 .background(Color(UIColor.systemGray6))
                                 .cornerRadius(12)
