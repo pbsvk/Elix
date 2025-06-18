@@ -39,8 +39,8 @@ struct RegisterView: View {
                                 .background(Color(UIColor.systemGray6))
                                 .cornerRadius(12)
                             
-                            TLButton(title: "Sign Up", action: {}, backgroundColor: .green)
-                                
+                            TLButton(title: "Sign Up", action: {viewModel.register()}, backgroundColor: .green)
+                           
                         }
                         .padding(.horizontal, 28)
                         

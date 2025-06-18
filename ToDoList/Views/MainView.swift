@@ -8,11 +8,39 @@
 import SwiftUI
 
 struct MainView: View {
+    @StateObject var viewModel = MainViewViewModel()
     var body: some View {
-                    LoginView()
+        if viewModel.isLoading {
+                   // Show a simple loading spinner while waiting for Firebase
+                   ProgressView()
+               } else if viewModel.isSignedIn , !viewModel.currentUserId.isEmpty{
+            accountView
+        }
+        else{
+            LoginView()
+        }
         
-        .padding()
     }
+    @ViewBuilder
+    var accountView: some View {
+        TabView{
+            ToDoListView(userId: viewModel.currentUserId)
+                .tabItem{
+                    Image(systemName: "list.bullet")
+                    Text("To-Do List")
+                }
+            
+            ProfileView()
+                .tabItem{
+                    Image(systemName: "person.circle")
+                    Text("Settings")
+                }
+        }
+
+    }
+    
+    
+    
 }
 
 #Preview {
